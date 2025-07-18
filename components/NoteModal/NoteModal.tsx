@@ -5,6 +5,7 @@ import css from './NoteModal.module.css';
 
 interface NoteModalProps {
   onClose: () => void;
+  children: React.ReactNode;
 }
 
 export default function NoteModal({ onClose }: NoteModalProps) {
