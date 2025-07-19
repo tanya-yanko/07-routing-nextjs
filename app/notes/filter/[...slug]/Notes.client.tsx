@@ -11,7 +11,7 @@ import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import Modal from '@/components/Modal/Modal';
 import Pagination from '@/components/Pagination/Pagination';
-import NoteForm from '@/components/NoteForm/NoteForm'; // Добавь NoteForm!
+import NoteForm from '@/components/NoteForm/NoteForm';
 import { fetchNotes } from '@/lib/api';
 import type { Note } from '@/types/note';
 
@@ -20,17 +20,18 @@ interface Props {
     notes: Note[];
     totalPages: number;
   };
+  tag?: string; // добавлен проп tag
 }
 
-export default function NotesClient({ initialData }: Props) {
+export default function NotesClient({ initialData, tag }: Props) {
   const [search, setSearch] = useState('');
   const [debouncedSearch] = useDebounce(search, 1000);
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['notes', debouncedSearch, page],
-    queryFn: () => fetchNotes(debouncedSearch, page),
+    queryKey: ['notes', tag ?? 'All', debouncedSearch, page], // добавлен tag в queryKey
+    queryFn: () => fetchNotes(debouncedSearch, page, tag), // передаем tag в fetchNotes
     placeholderData: (prev) => prev ?? initialData,
     staleTime: 1000 * 60 * 5,
   });
@@ -73,5 +74,4 @@ export default function NotesClient({ initialData }: Props) {
     </div>
   );
 }
-
 

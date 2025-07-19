@@ -17,20 +17,18 @@ interface FetchNotesResponse {
   totalPages: number;
 }
 
-export const fetchNotes = async (search: string, page: number): Promise<FetchNotesResponse> => {
+export const fetchNotes = async (
+  search: string,
+  page: number,
+  tag?: string
+): Promise<FetchNotesResponse> => {
   const response: AxiosResponse<FetchNotesResponse> = await axiosInstance.get('/notes', {
     params: {
       search: search.trim() || undefined,
+      tag: tag?.trim() || undefined,
       page,
       perPage: 12,
     },
-  });
-  return response.data;
-};
-
-export const getNotes = async (): Promise<FetchNotesResponse> => {
-  const response: AxiosResponse<FetchNotesResponse> = await axiosInstance.get('/notes', {
-    params: { page: 1, perPage: 12 },
   });
   return response.data;
 };

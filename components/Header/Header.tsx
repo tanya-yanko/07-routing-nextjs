@@ -1,5 +1,6 @@
 import css from './Header.module.css';
 import Link from 'next/link';
+import TagsMenu from '@/components/TagsMenu/TagsMenu';
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
             <Link href='/'>Home</Link>
           </li>
           <li>
-            <Link href='/notes'>Notes</Link>
+            <TagsMenu />
           </li>
         </ul>
       </nav>
@@ -22,7 +23,6 @@ const Header = () => {
 };
 
 export default Header;
-
 
 
   
