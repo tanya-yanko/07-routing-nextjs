@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header/Header';
+import Footer from "@/components/Footer/Footer";
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,25 +21,23 @@ export const metadata: Metadata = {
   description: 'Created by Go IT',
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+  modal,
+}: Readonly<{
   children: React.ReactNode;
   modal?: React.ReactNode;
-}
+}>) {
 
-export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TanStackProvider>
           <Header />
-          <main>{children}</main>
-          {/* Здесь добавлен слот для параллельного роута modal */}
+          {children}
           {modal}
-          <footer>
-            <p>
-              Created <time dateTime="2025">2025</time>
-            </p>
-          </footer>
+          <Footer />
+          <Toaster />
         </TanStackProvider>
       </body>
     </html>
