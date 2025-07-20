@@ -20,7 +20,7 @@ interface Props {
     notes: Note[];
     totalPages: number;
   };
-  tag?: string; // добавлен проп tag
+  tag?: string; 
 }
 
 export default function NotesClient({ initialData, tag }: Props) {

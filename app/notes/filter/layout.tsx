@@ -1,7 +1,7 @@
 import React from "react";
 import css from './LayoutNotes.module.css';
 
-type NoteListLayoutProps = {
+type NoteListb  = {
   children: React.ReactNode;
   sidebar: React.ReactNode;
 };
