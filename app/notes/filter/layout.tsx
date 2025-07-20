@@ -9,7 +9,7 @@ type NoteListb  = {
 export default function NoteListLayout({
   children,
   sidebar,
-}: NoteListLayoutProps) {
+}: NoteListb) {
   return (
     <div className={css.container}>
       <aside className={css.sidebar}>{sidebar}</aside>
